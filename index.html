@@ -14,6 +14,7 @@ developer, HTML , Django">
 <body>
 
 <header>
+    <canvas id="logo" width="120" height="120">Elroe Melaku logo</canvas>
     <h1>Elroe Melaku</h1>
     <img src="images/profile.jpg" alt="A professional 3x4 photo of Elroe Melaku" title="Elroe Melaku" width="200" height="200">
     <p>Software Engineering student and aspiring web developer.</p>
@@ -59,13 +60,10 @@ developer, HTML , Django">
 
     </section>
     <aside>
-    <h3>Hear my introduction</h3>
-    <audio controls>
-        <source src="media/intro.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+   
+  
 
-    <h3>A Podcast I recommend</h3>
+    <h3>The Podcast I recommend</h3>
     <iframe src="https://www.youtube.com/embed/KJ4rJHjjh2k"
             width="560" height="315"
             title="YouTube video: Productive Habesha Podcast"
@@ -128,6 +126,40 @@ developer, HTML , Django">
         <label for="degree-progress">Completed Credits (53 / 140):</label><br>
         <progress id="degree-progress" value="53" max="140">37%</progress>
     </p>
+    <h3>Skills Bar Chart</h3>
+<canvas id="skillChart" width="300" height="150" style="background: #f4f4f4; border: 1px solid #ccc;"></canvas>
+
+<script>
+    const chart = document.getElementById('skillChart');
+    const chartCtx = chart.getContext('2d');
+
+    const skills = [
+        { name: "Python", height: 90 },
+        { name: "C++", height: 85 },
+        { name: "HTML", height: 50 },
+        { name: "JS", height: 10 }
+    ];
+
+    const barWidth = 50;
+    const gap = 20;
+    const startX = 30;
+
+    skills.forEach((skill, index) => {
+        let x = startX + index * (barWidth + gap);
+        // Since y grows downward, starting baseline for bottom-aligned bar is y = 130 - height
+        let y = 130 - skill.height;
+
+        // Draw bar
+        chartCtx.fillStyle = "#1f5fa8";
+        chartCtx.fillRect(x, y, barWidth, skill.height);
+
+        // Draw skill label under the bar
+        chartCtx.fillStyle = "#333";
+        chartCtx.font = "12px Arial";
+        chartCtx.textAlign = "center";
+        chartCtx.fillText(skill.name, x + barWidth / 2, 142);
+    });
+</script>
 
         <h3>My Learning Roadmap</h3> 
         <ol type="1">     
@@ -383,5 +415,25 @@ developer, HTML , Django">
 <footer>
     <p>&copy; 2026 Elroe Melaku. All rights reserved.</p>
 </footer>
+<script>
+    const canvas = document.getElementById('logo');
+    const ctx = canvas.getContext('2d');
+
+   
+    ctx.fillStyle = "#1f5fa8";
+    ctx.fillRect(0, 0, 120, 120);
+
+
+    ctx.beginPath();
+    ctx.arc(60, 60, 45, 0, 2 * Math.PI);
+    ctx.fillStyle = "white";
+    ctx.fill();
+
+    ctx.fillStyle = "#1f5fa8";
+    ctx.font = "bold 36px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("EM", 60, 62);
+</script>
 </body>
 </html>
